@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="home"></string>
+    <string name="group"></string>
+    <string name="addG"></string>
+    <string name="note"></string>
+</resources>

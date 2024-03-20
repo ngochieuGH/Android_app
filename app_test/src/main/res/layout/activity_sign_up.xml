@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditText
+        android:id="@+id/textName"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="Name"
+        android:layout_below="@id/textMain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/textUserName"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="UserName"
+        android:layout_below="@id/textName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:paddingRight="60dp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/textPass"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="Password"
+        android:layout_below="@id/textUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/textRPass"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:hint="RepeatPassword"
+        android:layout_below="@id/textPass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:id="@+id/textMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"/>
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:layout_below="@id/textRPass"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:height="50dp"
+        android:textColor="#ffff"
+        android:background="#673AB7"/>
+</RelativeLayout>

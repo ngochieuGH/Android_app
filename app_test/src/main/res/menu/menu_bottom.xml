@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/note"
+        android:title="@string/note"
+        android:icon="@drawable/ic_note"/>
+    <item android:id="@+id/group"
+        android:title="@string/group"
+        android:icon="@drawable/ic_group"/>
+    <item android:id="@+id/addG"
+        android:title="@string/addG"
+        android:icon="@drawable/ic_setting"/>
+</menu>
