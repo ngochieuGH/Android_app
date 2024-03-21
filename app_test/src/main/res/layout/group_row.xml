@@ -3,22 +3,24 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/group_row_css"
-    android:padding="10dp"
     android:layout_margin="20dp">
     <TextView
-        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/bg_top_dialog"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nameGroup"
         android:text="Name Group"
-        android:textColor="@color/white"
+        android:textColor="#FFEB3B"
         android:textSize="25dp" />
     <TextView
+        android:padding="20dp"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name Leader"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="#FF3B3B"
         android:layout_below="@id/nameGroup"
         android:textSize="17dp"
         android:gravity="end"

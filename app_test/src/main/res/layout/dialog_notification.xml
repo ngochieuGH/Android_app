@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="Ok"
             android:textColor="#ffff"
-            android:background="#673AB7"
+            android:background="#DF0909"
             android:layout_centerHorizontal="true"/>
     </LinearLayout>
 </LinearLayout>

@@ -22,20 +22,15 @@
             android:name=".Task_list_Layout"
             android:exported="false" />
         <activity
-            android:name=".HomeAct"
-            android:exported="false" />
-        <activity
             android:name=".SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".NoteLayout"
             android:exported="false" />
         <activity
             android:name=".GroupLayout"
             android:exported="false" />
         <activity
             android:name=".homeLayout"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

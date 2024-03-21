@@ -67,5 +67,5 @@
         android:layout_centerHorizontal="true"
         android:height="50dp"
         android:textColor="#ffff"
-        android:background="#673AB7"/>
+        android:background="#009688"/>
 </RelativeLayout>

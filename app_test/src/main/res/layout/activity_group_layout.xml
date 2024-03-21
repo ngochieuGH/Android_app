@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout
+    android:background="#4CAF50"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
@@ -20,7 +22,7 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black"/>
+            android:textColor="#F80303"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_margin="20dp"
@@ -57,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:text="Chưa có thông báo mới"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:gravity="center"
             android:textSize="20dp"/>
     </RelativeLayout>
