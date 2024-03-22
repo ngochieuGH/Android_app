@@ -10,7 +10,7 @@
         android:layout_height="100dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="40dp"
-        android:src="@drawable/image"/>
+        android:src="@drawable/imguser"/>
     <TextView
         android:layout_toRightOf="@id/imageUser"
         android:layout_width="wrap_content"

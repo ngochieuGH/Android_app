@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,6 +41,9 @@ public class SignUp extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_notification);
         dialog.setCanceledOnTouchOutside(false);
         Button btn = (Button) dialog.findViewById(R.id.btnNext);
+        TextView textView = (TextView) dialog.findViewById(R.id.textChangeNotifi);
+
+        textView.setText("Đăng ký thành công");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

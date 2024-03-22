@@ -53,7 +53,7 @@
         android:text="Sign Up"
         android:textSize="50dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="#009688"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"/>
 

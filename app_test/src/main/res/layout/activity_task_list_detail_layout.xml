@@ -10,6 +10,7 @@
         android:orientation="horizontal"
         android:background="@drawable/table_task">
         <ImageView
+            android:id="@+id/btnBack"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back"
             android:layout_width="60dp"

@@ -9,16 +9,14 @@
         android:id="@+id/id1"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:orientation="horizontal"
         android:background="@drawable/table_task">
-        <ImageView
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/back"
-            android:layout_width="60dp"
-            android:padding="8dp"
-            android:layout_height="match_parent"/>
+<!--        <ImageView-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:src="@drawable/back"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_height="match_parent"/>-->
         <TextView
-
             android:text="Group Details"
             android:textSize="20sp"
             android:gravity="center"
