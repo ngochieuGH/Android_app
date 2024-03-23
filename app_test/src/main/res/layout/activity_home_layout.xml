@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
-        android:background="#E91E1E"
+        android:background="#DF0909"
         android:id="@+id/bottom_navi"
         app:menu="@menu/menu_bottom"
         app:itemRippleColor="@color/white"

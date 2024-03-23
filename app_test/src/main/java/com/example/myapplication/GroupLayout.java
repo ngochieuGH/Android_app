@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,6 +22,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Class.putPDF;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import org.json.JSONObject;
 
 public class GroupLayout extends AppCompatActivity {
@@ -27,6 +38,9 @@ public class GroupLayout extends AppCompatActivity {
     ImageView btnTaskList, btnOptions, file, calendar, send_file, btnBack;
     EditText txt;
     public static final int REQUEST_PDF_FILES = 1;
+
+    StorageReference storageReference;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +52,9 @@ public class GroupLayout extends AppCompatActivity {
         txt = (EditText) findViewById(R.id.textContent);
         send_file = (ImageView) findViewById(R.id.btnArrow);
         btnBack = (ImageView) findViewById(R.id.btnBack);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,15 +91,32 @@ public class GroupLayout extends AppCompatActivity {
             }
         });
 
-        send_file.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void uploadFile(Uri data) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("File is loading .....");
+        progressDialog.show();
+
+        StorageReference reference = storageReference.child("uploadPDF" + System.currentTimeMillis() + ".pdf");
+
+        reference.putFile(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onClick(View v) {
-                if(!txt.getText().toString().equals("")){
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    putPDF putPDF = new putPDF(txt.getText().toString(), data.toString());
+                    databaseReference.child("file_pdf").setValue(putPDF);
+                    progressDialog.dismiss();
                     DialogSendFile();
-                }
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progress = (100.0* snapshot.getBytesTransferred())/snapshot.getTotalByteCount();
+                progressDialog.setMessage("File is Uploaded.. " + (int)progress + "%");
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -101,6 +135,14 @@ public class GroupLayout extends AppCompatActivity {
                     Toast.makeText(GroupLayout.this,pdfUri.getPath(),Toast.LENGTH_SHORT).show();
                     Log.d("file_uri", pdfUri.toString());
                     Log.d("file_path", pdfUri.getPath().substring(pdfUri.getPath().lastIndexOf("/") + 1));
+                    send_file.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(!txt.getText().toString().equals("")){
+                                uploadFile(pdfUri);
+                            }
+                        }
+                    });
                 } else {
                     // Trường hợp người dùng chọn nhiều tệp
                     ClipData clipData = data.getClipData();
@@ -115,6 +157,15 @@ public class GroupLayout extends AppCompatActivity {
                             Log.d("file_path", pdfUri.getPath().substring(pdfUri.getPath().lastIndexOf("/") + 1));
                         }
                     }
+                    send_file.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(!txt.getText().toString().equals("")){
+                                //uploadFile();
+                                //DialogSendFile();
+                            }
+                        }
+                    });
                     txt.setText(file_name);
                 }
             }

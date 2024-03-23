@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="#4CAF50"
+<RelativeLayout
+    android:background="#E6E1E1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -42,68 +43,76 @@
             android:textSize="20dp"
             />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/id3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id2">
+        android:layout_below="@id/id2"
+        >
+
         <EditText
             android:id="@+id/heading1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="I. Heading 1"
-            />
+            android:hint="I. Heading 1" />
+
         <EditText
             android:id="@+id/cv"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@id/heading1"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:hint="1. Công việc"/>
+            android:layout_below="@id/heading1"
+            android:layout_marginLeft="20dp"
+            android:hint="1. Công việc" />
+
         <EditText
             android:id="@+id/ngLam"
-            android:layout_toEndOf="@id/cv"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading1"
             android:layout_marginLeft="20dp"
-            android:layout_below="@id/heading1"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:hint="Người làm"/>
+            android:layout_toEndOf="@id/cv"
+            android:hint="Người làm" />
+
         <EditText
-            android:layout_toEndOf="@id/ngLam"
-            android:layout_marginLeft="10dp"
-            android:layout_below="@id/heading1"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:hint="DeadLine"/>
+            android:layout_below="@id/heading1"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/ngLam"
+            android:hint="DeadLine" />
+
         <Button
+            android:id="@+id/btnThem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cv"
+            android:layout_marginLeft="90dp"
             android:layout_marginTop="10dp"
-            android:textColor="#ffff"
             android:background="#E31920"
             android:text="Thêm"
-            android:layout_marginLeft="90dp"
-            android:id="@+id/btnThem"
-            android:layout_below="@id/cv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="#ffff" />
+
         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cv"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="#ffff"
+            android:layout_toEndOf="@id/btnThem"
             android:background="#E31920"
             android:text="Ghi chú"
-            android:layout_marginLeft="20dp"
-            android:layout_toEndOf="@id/btnThem"
-            android:layout_below="@id/cv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="#ffff" />
+
         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnThem"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="#ffff"
             android:background="#E31920"
             android:text="Thêm mục"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@id/btnThem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:textColor="#ffff" />
 
     </RelativeLayout>
     <RelativeLayout
