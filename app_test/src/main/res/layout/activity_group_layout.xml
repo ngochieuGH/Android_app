@@ -18,6 +18,7 @@
             android:padding="8dp"
             android:layout_height="match_parent"/>
         <TextView
+            android:id="@+id/name_group2"
             android:text="Nhóm 5 Mobile"
             android:textSize="20sp"
             android:gravity="center"

@@ -60,7 +60,7 @@ public class homeLayout extends AppCompatActivity {
                         replaceFragment(homeFragment, jsonObject);
                     }
                     if(selectItem == R.id.group){
-                        replaceFragment(groupFragment);
+                        replaceFragment(groupFragment, jsonObject);
                     }
                     if(selectItem == R.id.addG){
                         Toast.makeText(homeLayout.this, "Add group on", Toast.LENGTH_SHORT).show();

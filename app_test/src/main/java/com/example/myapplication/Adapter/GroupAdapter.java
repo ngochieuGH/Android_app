@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,9 @@ public class GroupAdapter extends BaseAdapter {
         TextView nameLeader = (TextView) convertView.findViewById(R.id.nameLeader);
 
         Group group = groupList.get(position);
-        nameGroup.setText(group.getName());
-        nameLeader.setText(group.getNameLeader());
+        nameGroup.setText(group.getName_group());
+        nameLeader.setText(group.getUser().getName());
+        Log.d("Adapter1111111", "Yesssss");
         return convertView;
     }
 }

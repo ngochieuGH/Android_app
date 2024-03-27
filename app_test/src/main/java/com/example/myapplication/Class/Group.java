@@ -2,26 +2,52 @@ package com.example.myapplication.Class;
 
 public class Group {
     //    private int id;
-    private String name, nameLeader;
+    private int idgroup;
+    private String name_group, code_group;
+    private User user;
 
-    public Group(String name, String nameLeader) {
-        this.name = name;
-        this.nameLeader = nameLeader;
+    public Group() {
     }
 
-    public String getName() {
-        return name;
+    public Group(int idgroup, String name_group, String code_group, User user) {
+        this.idgroup = idgroup;
+        this.name_group = name_group;
+        this.code_group = code_group;
+        this.user = user;
+    }
+    public Group(String name_group, User user){
+        this.name_group = name_group;
+        this.user = user;
+    }
+    public int getIdgroup() {
+        return idgroup;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdgroup(int idgroup) {
+        this.idgroup = idgroup;
     }
 
-    public String getNameLeader() {
-        return nameLeader;
+    public String getName_group() {
+        return name_group;
     }
 
-    public void setNameLeader(String nameLeader) {
-        this.nameLeader = nameLeader;
+    public void setName_group(String name_group) {
+        this.name_group = name_group;
+    }
+
+    public String getCode_group() {
+        return code_group;
+    }
+
+    public void setCode_group(String code_group) {
+        this.code_group = code_group;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

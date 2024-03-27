@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 String s2 = editPass.getText().toString();
                 if(!s1.equals("") && !s2.equals("") ){
                     User user = new User();
-                    Toast.makeText(MainActivity.this, s1 + " " + s2, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, s1 + " " + s2, Toast.LENGTH_SHORT).show();
                     user.setUsername(s1);
                     user.setPassword(s2);
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                     Intent scr = new Intent(MainActivity.this, homeLayout.class);
                                     Log.d("State_Home","Off1");
                                     scr.putExtra("data_user", response.toString());

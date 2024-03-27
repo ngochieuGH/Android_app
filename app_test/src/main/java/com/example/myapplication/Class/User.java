@@ -1,22 +1,33 @@
 package com.example.myapplication.Class;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private int id;
     private String username, password, name, sdt, email;
 
     public User() {
     }
 
-    public User(String username, String password, String name, String sdt, String email) {
+    public User(int id, String username, String password, String name, String sdt, String email) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.sdt = sdt;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -63,7 +74,7 @@ public class User implements Serializable {
 
         JSONObject jsonObject = new JSONObject();
         try {
-//            jsonObject.put("id", getIdProducto());
+            jsonObject.put("id", getId());
             jsonObject.put("name", getName());
             jsonObject.put("username", getUsername());
             jsonObject.put("password", getPassword());

@@ -3,15 +3,19 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +35,14 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+
 public class GroupLayout extends AppCompatActivity {
+    TextView textView;
 
     ImageView btnTaskList, btnOptions, file, calendar, send_file, btnBack;
     EditText txt;
@@ -41,6 +50,7 @@ public class GroupLayout extends AppCompatActivity {
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +62,14 @@ public class GroupLayout extends AppCompatActivity {
         txt = (EditText) findViewById(R.id.textContent);
         send_file = (ImageView) findViewById(R.id.btnArrow);
         btnBack = (ImageView) findViewById(R.id.btnBack);
+        textView = (TextView) findViewById(R.id.name_group2);
+        Intent intent = getIntent();
+        try {
+            JSONObject jsonObject = new JSONObject(intent.getStringExtra("dataGroup"));
+            textView.setText(jsonObject.optString("nameG"));
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -117,6 +135,7 @@ public class GroupLayout extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("Range")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -131,8 +150,29 @@ public class GroupLayout extends AppCompatActivity {
                     Uri pdfUri = data.getData();
                     // Xử lý tệp PDF ở đây
                     String name_file = pdfUri.getPath().substring(pdfUri.getPath().lastIndexOf("/") + 1);
-                    txt.setText("#" + name_file + "\n");
-                    Toast.makeText(GroupLayout.this,pdfUri.getPath(),Toast.LENGTH_SHORT).show();
+                    //----- new 25/3/2024
+                    String uriString = pdfUri.toString();
+                    File myFile = new File(uriString);
+                    String path = myFile.getAbsolutePath();
+                    String displayName = null;
+                    if(uriString.startsWith("content://")){
+                        Cursor cursor = null;
+                        try {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                cursor = this.getContentResolver().query(pdfUri,null,null,null);
+                                if (cursor != null && cursor.moveToFirst()){
+                                    displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                                }
+                            }
+                        } finally {
+                            cursor.close();
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.getName();
+                    }
+                    //-----------//
+                    txt.setText("#" + displayName + "\n");
+//                    Toast.makeText(GroupLayout.this,pdfUri.getPath(),Toast.LENGTH_SHORT).show();
                     Log.d("file_uri", pdfUri.toString());
                     Log.d("file_path", pdfUri.getPath().substring(pdfUri.getPath().lastIndexOf("/") + 1));
                     send_file.setOnClickListener(new View.OnClickListener() {
