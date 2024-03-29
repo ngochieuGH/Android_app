@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ProgressBar
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"/>
     <RelativeLayout
         android:id="@+id/id1"
         android:layout_width="match_parent"
@@ -55,33 +61,41 @@
     <RelativeLayout
         android:id="@+id/id3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:layout_below="@id/id2">
         <TextView
+            android:id="@+id/mess_null"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:text="Chưa có thông báo mới"
             android:textColor="@color/black"
             android:gravity="center"
-            android:textSize="20dp"/>
+            android:textSize="20dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
     <RelativeLayout
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/id3"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/table_task">
+        android:background="@drawable/item_fshare">
 
         <ImageView
+            android:layout_below="@id/textContent"
             android:id="@+id/btnOption"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="8dp"
             android:src="@drawable/plus" />
         <ImageView
+            android:layout_below="@id/textContent"
             android:id="@+id/file"
             android:layout_width="35dp"
             android:layout_height="50dp"
@@ -89,6 +103,7 @@
             android:visibility="invisible"
             android:layout_marginRight="7dp"/>
         <ImageView
+            android:layout_below="@id/textContent"
             android:layout_toEndOf="@id/file"
             android:id="@+id/Calendar"
             android:layout_width="35dp"
@@ -96,21 +111,34 @@
             android:src="@drawable/ic_calendar"
             android:visibility="invisible"/>
 
-        <EditText
-
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
             android:id="@+id/textContent"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/btnOption"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:visibility="gone"
+            />
+        <EditText
+            android:id="@+id/textTitle"
+            android:layout_below="@id/textContent"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/btnOption"
+            android:textColor="@color/black"
+            />
 
         <ImageView
+            android:layout_below="@id/textContent"
             android:id="@+id/btnArrow"
             android:layout_width="50dp"
             android:layout_marginLeft="10dp"
             android:layout_height="50dp"
-            android:layout_toRightOf="@id/textContent"
+            android:layout_toRightOf="@id/textTitle"
             android:padding="8dp"
             android:src="@drawable/arrow" />
     </RelativeLayout>

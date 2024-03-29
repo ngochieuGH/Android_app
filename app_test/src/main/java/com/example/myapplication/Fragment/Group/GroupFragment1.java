@@ -49,7 +49,7 @@ public class GroupFragment1 extends Fragment {
         return group;
     }
     private void init(View view, User user) {
-        Log.d("Group_state", String.valueOf(user.getId()));
+        //Log.d("Group_state", String.valueOf(user.getId()));
         listGroup = (ListView) view.findViewById(R.id.listGroup);
         groupArrayList = new ArrayList<>();
 //        groupArrayList.add(new Group());
@@ -63,7 +63,7 @@ public class GroupFragment1 extends Fragment {
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
-        Toast.makeText(getActivity(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, url, jsonArray
                 , new Response.Listener<JSONArray>() {
             @Override
@@ -86,9 +86,11 @@ public class GroupFragment1 extends Fragment {
                     listGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getActivity(), list.get(position).toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), list.get(position).toString(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), GroupLayout.class);
                             intent.putExtra("dataGroup", list.get(position).toString());
+                            intent.putExtra("user_name", user.getName());
+                            //Log.d("data_sendg", user.getName());
                             startActivity(intent);
                         }
                     });
