@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+    <HorizontalScrollView
+        android:id="@+id/row_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:paddingTop="10dp"
+                android:id="@+id/index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I."
+                android:textSize="20dp"/>
+            <EditText
+                android:gravity="center"
+                android:layout_toEndOf="@id/index"
+                android:id="@+id/cv"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="Công việc" />
+
+            <EditText
+                android:gravity="center"
+                android:id="@+id/ngLam"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_toEndOf="@id/cv"
+                android:hint="Người làm" />
+
+            <EditText
+                android:id="@+id/deadline"
+                android:gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@id/ngLam"
+                android:hint="DeadLine" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <EditText
+        android:id="@+id/ghiChu"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/row_item"
+        android:text="Ghi chu"
+        android:gravity="center"
+        android:visibility="gone"/>
+    <Button
+        android:padding="8dp"
+        android:layout_below="@id/row_item"
+        android:id="@+id/btnThem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_add_note"
+        android:text="Thêm ghi chú"
+        android:textColor="#FFFFFD" />
+    <Button
+        android:layout_toEndOf="@id/btnThem"
+        android:padding="8dp"
+        android:layout_below="@id/row_item"
+        android:id="@+id/btnXoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_add_note"
+        android:text="Xóa"
+        android:textColor="#FFFFFD" />
+
+</RelativeLayout>

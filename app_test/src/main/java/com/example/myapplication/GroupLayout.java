@@ -71,6 +71,7 @@ public class GroupLayout extends AppCompatActivity {
     Query query;
     ProgressBar progressBar;
     String user_name, idGroup;
+    JSONObject jsonObject;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,7 @@ public class GroupLayout extends AppCompatActivity {
         messs = (TextView) findViewById(R.id.mess_null);
         Intent intent = getIntent();
         try {
-            JSONObject jsonObject = new JSONObject(intent.getStringExtra("dataGroup"));
+            jsonObject = new JSONObject(intent.getStringExtra("dataGroup"));
             textView.setText(jsonObject.optString("nameG"));
             user_name = intent.getStringExtra("user_name");
             //Toast.makeText(GroupLayout.this, user_name, Toast.LENGTH_SHORT).show();
@@ -132,6 +133,7 @@ public class GroupLayout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GroupLayout.this, Task_list_Layout.class);
+                intent.putExtra("data_task", jsonObject.toString());
                 startActivity(intent);
             }
         });

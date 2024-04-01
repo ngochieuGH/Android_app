@@ -55,7 +55,7 @@ public class GroupFragment1 extends Fragment {
 //        groupArrayList.add(new Group());
 //        groupArrayList.add(new Group());
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        String url = "http://192.168.1.150:8080/getListGroup";
+        String url = "http://" + getString(R.string.url) + ":8080/getListGroup";
         JSONArray jsonArray = new JSONArray();
         try {
             jsonArray.put(Integer.parseInt("0"),user.toJSON());

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         // 192.168.1.3 : Local Server
         // 192.168.1.150: Remote Server
-        String url = "http://192.168.1.150:8080/login";
+        String url = "http://" + getString(R.string.url) +":8080/login";
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

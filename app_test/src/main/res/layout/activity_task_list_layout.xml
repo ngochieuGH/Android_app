@@ -18,6 +18,7 @@
             android:padding="8dp"
             android:layout_height="match_parent"/>
         <TextView
+            android:id="@+id/nameGroup"
             android:text="Group Details"
             android:textSize="20sp"
             android:gravity="center"

@@ -59,14 +59,16 @@
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
+        android:layout_above="@id/id4"
         android:id="@+id/id3"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/id2">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id2"
+        android:layout_marginBottom="50dp">
         <TextView
             android:id="@+id/mess_null"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="match_parent"
             android:text="Chưa có thông báo mới"
             android:textColor="@color/black"
             android:gravity="center"
@@ -78,10 +80,10 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/id4"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"

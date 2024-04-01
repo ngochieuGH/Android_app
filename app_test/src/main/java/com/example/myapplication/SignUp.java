@@ -68,7 +68,7 @@ public class SignUp extends AppCompatActivity {
         // 192.168.1.3 : Local Server
         // 192.168.1.150: Remote Server
         // http://172.20.10.5:8080/SignUp
-        String url = "http://192.168.1.150:8080/SignUp";
+        String url = "http://" + getString(R.string.url) + ":8080/SignUp";
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
