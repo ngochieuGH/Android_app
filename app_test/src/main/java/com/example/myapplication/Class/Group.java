@@ -1,5 +1,8 @@
 package com.example.myapplication.Class;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Group {
     //    private int id;
     private int idgroup;
@@ -50,4 +53,11 @@ public class Group {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getIdgroup());
+        return jsonObject;
+    }
+
 }

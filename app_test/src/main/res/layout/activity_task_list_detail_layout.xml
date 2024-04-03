@@ -80,6 +80,7 @@
             android:textColor="#ffff"
             android:background="#673AB7"/>
         <Button
+            android:id="@+id/sendTask"
             android:layout_alignParentEnd="true"
             android:text="Tạo"
             android:textColor="#ffff"

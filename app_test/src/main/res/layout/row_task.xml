@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:text="I."
                 android:textSize="20dp"/>
-            <EditText
+            <TextView
                 android:gravity="center"
                 android:layout_toEndOf="@id/index"
                 android:id="@+id/cv"
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Công việc" />
 
-            <EditText
+            <TextView
                 android:gravity="center"
                 android:id="@+id/ngLam"
                 android:layout_width="150dp"
@@ -35,7 +35,7 @@
                 android:layout_toEndOf="@id/cv"
                 android:hint="Người làm" />
 
-            <EditText
+            <TextView
                 android:id="@+id/deadline"
                 android:gravity="center"
                 android:layout_width="150dp"
@@ -45,7 +45,7 @@
                 android:hint="DeadLine" />
         </LinearLayout>
     </HorizontalScrollView>
-    <EditText
+    <TextView
         android:id="@+id/ghiChu"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -63,7 +63,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_add_note"
-        android:text="Thêm ghi chú"
+        android:text="Sua"
         android:textColor="#FFFFFD" />
     <Button
         android:layout_toEndOf="@id/btnThem"
