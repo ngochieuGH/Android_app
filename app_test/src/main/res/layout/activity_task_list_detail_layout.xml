@@ -34,7 +34,7 @@
         android:layout_below="@id/id1">
         <EditText
             android:padding="10dp"
-            android:id="@+id/btnAddTaskList"
+            android:id="@+id/HeadingTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/radius_bg_border"

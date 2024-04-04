@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Class.Group;
+import com.example.myapplication.Class.Row_task;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.Task_list_detail_Layout;
@@ -25,12 +26,12 @@ public class AddTaskAdapter extends BaseAdapter {
     private Context context;
     private int layout;
 
-    private List<Group> groups;
+    private List<Row_task> rowTasks;
 
-    public AddTaskAdapter(Context context, int layout, List<Group> groups) {
+    public AddTaskAdapter(Context context, int layout, List<Row_task> rowTasks) {
         this.context = context;
         this.layout = layout;
-        this.groups = groups;
+        this.rowTasks = rowTasks;
     }
 
     public AddTaskAdapter(Task_list_detail_Layout context, int layout) {
@@ -40,7 +41,7 @@ public class AddTaskAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return groups.size();
+        return rowTasks.size();
     }
 
     @Override
@@ -69,9 +70,10 @@ public class AddTaskAdapter extends BaseAdapter {
         convertView = inflater.inflate(layout, null);
         wiget_init(convertView);
         index.setText(position + 1 + "");
-        Group group = groups.get(position);
-        ngLam.setText(group.getName_group());
-        deadline.setText(group.getCode_group());
+        Row_task rowTask = rowTasks.get(position);
+        cv.setText(rowTask.getName_task());
+        ngLam.setText(rowTask.getUser().getName());
+        deadline.setText(rowTask.getDead_line());
         return convertView;
     }
 

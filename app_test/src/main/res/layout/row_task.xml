@@ -8,38 +8,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:paddingTop="10dp"
+                android:textColor="@color/black"
                 android:id="@+id/index"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="I."
                 android:textSize="20dp"/>
             <TextView
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_toEndOf="@id/index"
                 android:id="@+id/cv"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="Công việc" />
 
             <TextView
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:id="@+id/ngLam"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_toEndOf="@id/cv"
                 android:hint="Người làm" />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/deadline"
                 android:gravity="center"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@id/ngLam"
                 android:hint="DeadLine" />
@@ -63,7 +67,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_add_note"
-        android:text="Sua"
+        android:text="Sửa"
         android:textColor="#FFFFFD" />
     <Button
         android:layout_toEndOf="@id/btnThem"

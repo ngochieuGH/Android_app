@@ -1,6 +1,10 @@
 package com.example.myapplication.Class;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Row_task {
+    private int id;
     private String name_task, dead_line;
     private User user;
 
@@ -11,6 +15,14 @@ public class Row_task {
         this.name_task = name_task;
         this.dead_line = dead_line;
         this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName_task() {
@@ -35,5 +47,13 @@ public class Row_task {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getId());
+        jsonObject.put("name_task", getName_task());
+        jsonObject.put("dead_line", getDead_line());
+        jsonObject.put("user", getUser().toJSON());
+        return jsonObject;
     }
 }
