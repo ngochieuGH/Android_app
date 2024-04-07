@@ -19,38 +19,52 @@
             android:layout_height="match_parent"/>
         <TextView
             android:id="@+id/nameGroup"
-            android:text="Group Details"
+            android:text="Nhóm 5 Mobile"
             android:textSize="20sp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="#EA0A0A"/>
+            android:textColor="#F30909"/>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_below="@id/id1"
+        android:layout_margin="10dp"
+        android:id="@+id/id2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:padding="8dp"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/btnAddTaskList"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id1">
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/HeadingTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_bg_border"
             android:gravity="center"
-            android:src="@drawable/plus"/>
+            android:text="Schedule Name"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/item_fshare"
+        android:id="@+id/id3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id2">
+
         <ListView
-            android:layout_below="@id/btnAddTaskList"
-            android:id="@+id/taskList"
+            android:id="@+id/list_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:divider="#E6E1E1"
+            android:divider="#FFFF"
             android:dividerHeight="15dp" />
     </RelativeLayout>
+
 </RelativeLayout>

@@ -86,10 +86,16 @@ public class GroupFragment1 extends Fragment {
                     listGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            try {
+                                Log.d("data_checl", user.getId() + " " + list.get(position).getJSONObject("leader").optInt("id"));
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
                             //Toast.makeText(getActivity(), list.get(position).toString(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), GroupLayout.class);
                             intent.putExtra("dataGroup", list.get(position).toString());
                             intent.putExtra("user_name", user.getName());
+                            intent.putExtra("id_user", user.getId());
                             //Log.d("data_sendg", user.getName());
                             startActivity(intent);
                         }

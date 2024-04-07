@@ -8,18 +8,25 @@ import java.util.List;
 
 public class Task {
     private int id;
-    private String nameTask;
+    private String nameTask, dateCreate;
     private Group group;
     private List<Row_task> rowTasks;
 
     public Task() {
     }
 
-    public Task(int id,String nameTask, Group group, List<Row_task> rowTasks) {
+    public Task(int id,String nameTask, Group group, List<Row_task> rowTasks, String dateCreate) {
         this.id = id;
         this.nameTask = nameTask;
         this.group = group;
         this.rowTasks = rowTasks;
+        this.dateCreate = dateCreate;
+    }
+
+    public Task(int id, String nameTask, String dateCreate) {
+        this.id = id;
+        this.nameTask = nameTask;
+        this.dateCreate = dateCreate;
     }
 
     public int getId() {
@@ -54,6 +61,14 @@ public class Task {
         this.rowTasks = rowTasks;
     }
 
+    public String getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(String dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
     public JSONObject toJson() throws JSONException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id",getId());
@@ -64,6 +79,13 @@ public class Task {
             jsonArray.put(i, getRowTasks().get(i).toJSON());
         }
         jsonObject.put("rowtasks", jsonArray);
+        jsonObject.put("dateCreate", getDateCreate());
+        return jsonObject;
+    }
+
+    public  JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", getId());
         return jsonObject;
     }
 

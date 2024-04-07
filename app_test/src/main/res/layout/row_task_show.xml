@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp"
+    android:id="@+id/bg"
+    android:background="@drawable/bg_enable"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp">
+    <HorizontalScrollView
+        android:id="@+id/row_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I."
+                    android:textSize="20dp"/>
+                <TextView
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_toEndOf="@id/index"
+                    android:id="@+id/cv"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="Công việc" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:id="@+id/ngLam"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toEndOf="@id/cv"
+                    android:text="Người làm" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/deadline"
+                    android:gravity="center"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/ngLam"
+                    android:text="DeadLine" />
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I."
+                    android:textSize="20dp"
+                    android:visibility="invisible"/>
+                <TextView
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_toEndOf="@id/index"
+                    android:id="@+id/note"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:text="# Ghi chu" />
+                <ImageView
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/ic_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/check_blank"/>
+                <TextView
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="name file"/>
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+    <TextView
+        android:id="@+id/ghiChu"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/row_item"
+        android:text="Ghi chu"
+        android:gravity="center"
+        android:visibility="gone"/>
+</RelativeLayout>

@@ -71,14 +71,13 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         user.setName(jsonObject.optString("name"));
         return user;
     }
-
+    // ----------------- Get List User in Group --------------
     public void SetContext(Group group){
         RequestQueue requestQueue = Volley.newRequestQueue(Task_list_detail_Layout.this);
         String url = "http://" + getString(R.string.url) + ":8080/ListUserGroup";
         JSONArray jsonArray = new JSONArray();
         try {
             jsonArray.put(Integer.parseInt("0"), group.toJSON());
-            Log.d("2222222222222222", jsonArray.getString(0));
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -102,6 +101,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         });
         requestQueue.add(jsonArrayRequest);
     }
+    //// -----------Main---------------
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +143,8 @@ public class Task_list_detail_Layout extends AppCompatActivity {
             public void onClick(View v) {
                 if(!rowTasks.isEmpty()){
                     int id1 = LocalDateTime.now().getHour() + LocalDateTime.now().getMinute() + LocalDateTime.now().getSecond();
-                    Task task = new Task(id1,headingTask.getText().toString(), group, rowTasks);
+                    String date = LocalDateTime.now().getDayOfMonth() + "/" + LocalDateTime.now().getMonthValue() + "/" + LocalDateTime.now().getYear();
+                    Task task = new Task(id1,headingTask.getText().toString(), group, rowTasks, date);
                     try {
                         SendTask(task);
                         Log.d("Task value is: ", task.toJson().toString());
@@ -157,7 +158,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
             }
         });
     }
-
+    // ---------------------- Send task to server ---------------
     private void SendTask(Task task) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(Task_list_detail_Layout.this);
         String url = "http://" + getString(R.string.url) + ":8080/CreateTask";
@@ -176,6 +177,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
+    // ------------------ Dialog create Task ---------------
     public void DialogCreateTask(){
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -247,6 +249,8 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
+
+    // ------------------ Dialog when create success ---------------
     public void DialogSucess(){
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -259,6 +263,8 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(Task_list_detail_Layout.this, Task_list_Layout.class);
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -266,4 +272,104 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
+    // -----------Dialog edit-----------------
+    public void DialogEdit(int position, String nameTask, String nameUser, String deadLine, String note){
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_create_task);
+        dialog.setCanceledOnTouchOutside(false);
+        Button btnOk = (Button) dialog.findViewById(R.id.btnOk);
+        Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+        EditText textNameTask = (EditText) dialog.findViewById(R.id.textNotifi);
+        EditText textUser = (EditText) dialog.findViewById(R.id.textUser);
+        EditText textDead = (EditText) dialog.findViewById(R.id.textDead);
+        EditText textNote = (EditText) dialog.findViewById(R.id.textNote);
+        ImageView more = (ImageView) dialog.findViewById(R.id.more);
+        ImageView time = (ImageView) dialog.findViewById(R.id.time);
+        int[] index = {0};
+
+        textNameTask.setText(nameTask);
+        textUser.setText(nameUser);
+        textDead.setText(deadLine);
+        textNote.setText(note);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(dialog.getContext(), more);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_user, popupMenu.getMenu());
+                for (int i=0 ; i < users.size() ; i++){
+                    popupMenu.getMenu().add(0,users.get(i).getId(),0,users.get(i).getName());
+                }
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        textUser.setText(item.getTitle());
+                        index[0] = item.getItemId() - 1;
+                        Log.d("index value: " , index[0] + "");
+                        return true;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int ngay = calendar.get(Calendar.DATE);
+                int thang = calendar.get(Calendar.MONTH);
+                int nam = calendar.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(dialog.getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        textDead.setText(simpleDateFormat.format(calendar.getTime()));
+                    }
+                },nam,thang,ngay);
+                datePickerDialog.show();
+            }
+        });
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rowTasks.set(position, new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0])));
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+    // -----------Dialog delete---------------
+    public void DialogDelete(int position){
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_notification);
+        //dialog.setCanceledOnTouchOutside(false);
+        Button btn = (Button) dialog.findViewById(R.id.btnNext);
+        TextView textView = (TextView) dialog.findViewById(R.id.textChangeNotifi);
+
+        textView.setText("Bạn muốn xóa dòng này ?");
+        btn.setText("Đồng ý");
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rowTasks.remove(position);
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
+
 }

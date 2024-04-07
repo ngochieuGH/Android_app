@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/group_row_css"
+    android:layout_margin="20dp">
+    <TextView
+        android:padding="10dp"
+        android:background="@drawable/bg_top_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameTask"
+        android:text="Task"
+        android:textColor="#Ffff"
+        android:textSize="25dp" />
+    <TextView
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ngay tao: dd/mm/yyyy"
+        android:textStyle="bold"
+        android:textColor="#FF3B3B"
+        android:layout_below="@id/nameTask"
+        android:textSize="17dp"
+        android:gravity="end"
+        android:id="@+id/dateCreate"
+        />
+</RelativeLayout>
