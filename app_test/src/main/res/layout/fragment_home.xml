@@ -37,8 +37,9 @@
             android:layout_toEndOf="@id/imageUser"/>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="120dp"
+        android:id="@+id/headTable"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/layout1"
@@ -55,14 +56,32 @@
             android:textStyle="bold"
             android:textSize="25dp"
             android:id="@+id/table_name"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="1dp"
+        android:background="@drawable/table_task"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/headTable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:text="Chưa có công việc được giao"
+            android:id="@+id/messNull"
+            android:textSize="20dp"
             android:textColor="@color/black"
-            android:layout_below="@id/table_name"
-            android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:textSize="17dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Chua co Deadline"
+            android:visibility="gone"/>
+        <ListView
+            android:divider="#ffff"
+            android:dividerHeight="15dp"
+            android:layout_margin="10dp"
+            android:id="@+id/list_task_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
     </RelativeLayout>
 </RelativeLayout>

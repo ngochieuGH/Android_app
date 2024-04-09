@@ -5,5 +5,5 @@
     <string name="addG"></string>
     <string name="note"></string>
     <!--    192.168.1.150 172.20.10.5-->
-    <string name="url">192.168.1.150</string>
+    <string name="url">192.168.1.11</string>
 </resources>

@@ -69,10 +69,17 @@ public class AddTaskAdapter extends BaseAdapter {
         cv.setText(rowTask.getName_task());
         ngLam.setText(rowTask.getUser().getName());
         deadline.setText(rowTask.getDead_line());
+        if(rowTask.getGhi_chu().equals("")){
+            ghiChu.setVisibility(View.GONE);
+        }
+        else {
+            ghiChu.setVisibility(View.VISIBLE);
+            ghiChu.setText(rowTask.getGhi_chu());
+        }
         btnSua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogEdit(position, rowTask.getName_task(), rowTask.getUser().getName(), rowTask.getDead_line(), "");
+                context.DialogEdit(position, rowTask.getName_task(), rowTask.getUser().getName(), rowTask.getDead_line(), rowTask.getGhi_chu());
             }
         });
         return convertView;

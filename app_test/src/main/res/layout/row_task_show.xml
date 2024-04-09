@@ -85,6 +85,7 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/check_blank"/>
                 <TextView
+                    android:id="@+id/fileTask"
                     android:visibility="gone"
                     android:textColor="@color/black"
                     android:gravity="center"

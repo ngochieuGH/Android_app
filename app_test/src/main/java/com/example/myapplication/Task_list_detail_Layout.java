@@ -233,7 +233,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rowTasks.add(new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0])));
+                rowTasks.add(new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0]), textNote.getText().toString()));
                 adapter = new AddTaskAdapter(Task_list_detail_Layout.this, R.layout.row_task, rowTasks );
                 listView.setAdapter(adapter);
                 dialog.dismiss();
@@ -333,7 +333,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rowTasks.set(position, new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0])));
+                rowTasks.set(position, new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0]), textNote.getText().toString()));
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
