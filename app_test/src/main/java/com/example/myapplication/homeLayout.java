@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.myapplication.Class.User;
 import com.example.myapplication.Fragment.Group.GroupFragment1;
 import com.example.myapplication.Fragment.Home.HomeFragment;
+import com.example.myapplication.Fragment.Setting.SettingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 
 public class homeLayout extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private Fragment homeFragment, groupFragment;
+    private Fragment homeFragment, groupFragment, settingFragment;
     private FragmentManager fragmentManager;
     //    public void WidgetMapping(){
 //        textView = (TextView) findViewById(R.id.textChange);
@@ -45,7 +46,7 @@ public class homeLayout extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         groupFragment = new GroupFragment1();
-
+        settingFragment = new SettingFragment();
         bottomNavigationView = findViewById(R.id.bottom_navi);
 
         Intent intent = getIntent();
@@ -63,7 +64,7 @@ public class homeLayout extends AppCompatActivity {
                         replaceFragment(groupFragment, jsonObject);
                     }
                     if(selectItem == R.id.addG){
-                        Toast.makeText(homeLayout.this, "Add group on", Toast.LENGTH_SHORT).show();
+                        replaceFragment(settingFragment);
                     }
                     if(selectItem == R.id.note){
 

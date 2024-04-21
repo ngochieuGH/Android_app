@@ -82,6 +82,12 @@ public class AddTaskAdapter extends BaseAdapter {
                 context.DialogEdit(position, rowTask.getName_task(), rowTask.getUser().getName(), rowTask.getDead_line(), rowTask.getGhi_chu());
             }
         });
+        btnXoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.DialogDelete(position);
+            }
+        });
         return convertView;
     }
 

@@ -35,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -61,7 +63,6 @@ public class HomeFragment extends Fragment {
         }
         return view;
     }
-
     private void GetRowTaskHome(JSONObject jsonObject) {
         User user = new User();
         user.setId(jsonObject.optInt("id"));
@@ -87,6 +88,7 @@ public class HomeFragment extends Fragment {
                     for(JSONObject j : jsonObjects){
                         rowTasks.add(ConverRowTask(j));
                     }
+                    Collections.sort(rowTasks, new DeadlineComparator());
                     rowTaskHomeAdapter = new Row_task_HomeAdapter(getActivity(), R.layout.row_task_home, rowTasks);
                     listView.setAdapter(rowTaskHomeAdapter);
                 } catch (JSONException e) {
@@ -107,5 +109,21 @@ public class HomeFragment extends Fragment {
         rowTask.setName_task(j.optString("name_task"));
         rowTask.setDead_line(j.optString("dead_line"));
         return rowTask;
+    }
+    public static class DeadlineComparator implements Comparator<Row_task> {
+        @Override
+        public int compare(Row_task r1, Row_task r2) {
+            String[] parts1 = r1.getDead_line().split("/");
+            String[] parts2 = r2.getDead_line().split("/");
+
+            for (int i = 2; i >= 0; i--) {
+                int comparison = parts1[i].compareTo(parts2[i]);
+                if (comparison != 0) {
+                    return comparison;
+                }
+            }
+
+            return 0;
+        }
     }
 }

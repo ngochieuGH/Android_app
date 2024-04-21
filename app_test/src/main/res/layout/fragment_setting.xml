@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFCFC"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/id1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/table_task">
+        <!--        <ImageView-->
+        <!--            android:layout_gravity="center_vertical"-->
+        <!--            android:src="@drawable/back"-->
+        <!--            android:layout_width="60dp"-->
+        <!--            android:padding="8dp"-->
+        <!--            android:layout_height="match_parent"/>-->
+        <TextView
+            android:text="Setting"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#FF1111"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id1">
+        <Button
+            android:textColor="#ffff"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_latetask"
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chỉnh sửa thông tin"/>
+        <Button
+            android:textColor="#ffff"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_latetask"
+            android:layout_below="@id/btn1"
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chỉnh sửa mật khẩu"/>
+        <Button
+            android:textColor="#ffff"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_latetask"
+            android:layout_below="@id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng xuất"
+            android:id="@+id/btnLogout"/>
+    </RelativeLayout>
+</RelativeLayout>

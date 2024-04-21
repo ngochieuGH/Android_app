@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textNotifi"
         android:textSize="16sp"
-        android:text="Choose file you want"
+        android:text="Chọn file bạn muốn nộp !"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="File name: "/>
-                    <EditText
+                    <TextView
                         android:enabled="false"
                         android:id="@+id/textUser"
                         android:layout_width="match_parent"

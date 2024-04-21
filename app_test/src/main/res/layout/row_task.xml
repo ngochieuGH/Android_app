@@ -57,8 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/row_item"
         android:text="Ghi chu"
-        android:gravity="center"
-        android:visibility="gone"/>
+        android:textColor="@color/black"
+        android:visibility="gone"
+        />
     <Button
         android:padding="8dp"
         android:layout_below="@id/ghiChu"

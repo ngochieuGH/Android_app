@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Task_list_show_detail_Layout"
+            android:exported="false" />
+        <activity
             android:name=".Task_list_show_Layout"
             android:exported="false" />
         <activity

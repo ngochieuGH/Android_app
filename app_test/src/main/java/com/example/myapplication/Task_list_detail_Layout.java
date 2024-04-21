@@ -141,8 +141,9 @@ public class Task_list_detail_Layout extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                if(!rowTasks.isEmpty()){
-                    int id1 = LocalDateTime.now().getHour() + LocalDateTime.now().getMinute() + LocalDateTime.now().getSecond();
+                if(!rowTasks.isEmpty() && !headingTask.getText().equals("") ){
+                    String s = "" + LocalDateTime.now().getHour() + LocalDateTime.now().getMinute() + LocalDateTime.now().getDayOfMonth() + LocalDateTime.now().getMonthValue();
+                    int id1 = Integer.parseInt(s);
                     String date = LocalDateTime.now().getDayOfMonth() + "/" + LocalDateTime.now().getMonthValue() + "/" + LocalDateTime.now().getYear();
                     Task task = new Task(id1,headingTask.getText().toString(), group, rowTasks, date);
                     try {
@@ -233,7 +234,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rowTasks.add(new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0]), textNote.getText().toString()));
+                rowTasks.add(new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0]), textNote.getText().toString(), 0));
                 adapter = new AddTaskAdapter(Task_list_detail_Layout.this, R.layout.row_task, rowTasks );
                 listView.setAdapter(adapter);
                 dialog.dismiss();
@@ -333,7 +334,7 @@ public class Task_list_detail_Layout extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rowTasks.set(position, new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0]), textNote.getText().toString()));
+                rowTasks.set(position, new Row_task(textNameTask.getText().toString(),textDead.getText().toString(),users.get(index[0]), textNote.getText().toString(), 0));
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }

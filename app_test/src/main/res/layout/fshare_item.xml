@@ -10,7 +10,7 @@
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
         android:paddingLeft="18dp"
-        android:background="@drawable/bg_top_dialog"
+        android:background="@drawable/bg_top_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nameShare"

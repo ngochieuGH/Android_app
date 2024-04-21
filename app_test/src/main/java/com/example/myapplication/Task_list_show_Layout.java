@@ -88,6 +88,7 @@ public class Task_list_show_Layout extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     public void ConvertRowTask(JSONObject dataTask) throws JSONException {
@@ -117,9 +118,14 @@ public class Task_list_show_Layout extends AppCompatActivity {
                     }
                     rowTaskAdapter = new Row_taskAdapter(Task_list_show_Layout.this, R.layout.row_task_show, rowTasks, id_user);
                     listView.setAdapter(rowTaskAdapter);
+                    Log.d("task1", "onResponse: 1");
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent1 = new Intent(Task_list_show_Layout.this, Task_list_show_detail_Layout.class);
+                            intent1.putExtra("detail_task", jsonObjects.get(position).toString());
+                            intent1.putExtra("id_user", id_user);
+                            startActivityForResult(intent1, 100);
                         }
                     });
                 } catch (JSONException e) {
@@ -145,99 +151,22 @@ public class Task_list_show_Layout extends AppCompatActivity {
         user.setName(j.getJSONObject("user").optString("name"));
         rowTask.setUser(user);
         rowTask.setGhi_chu(j.optString("ghi_chu"));
+        rowTask.setTrang_thai(j.optInt("trang_thai"));
+        rowTask.setDay_finish(j.optString("day_finish"));
         return rowTask;
     }
 
-    public Boolean DialogSendFileTask() {
-        final Boolean[] check_staus = {false};
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_send_file_task);
-        dialog.setCanceledOnTouchOutside(false);
-
-        Button btnOk = (Button) dialog.findViewById(R.id.btnOk);
-        Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
-        textUser = (TextView) dialog.findViewById(R.id.textUser);
-        ImageView more = (ImageView) dialog.findViewById(R.id.more);
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("*/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                startActivityForResult(intent, REQUEST_PDF_FILES);
-            }
-        });
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(textUser.getText().equals("")){
-                    Toast.makeText(Task_list_show_Layout.this, "Please choose file", Toast.LENGTH_SHORT).show();
-                } else{
-                    check_staus[0] = true;
-                    GetFileTask();
-                    dialog.dismiss();
-                }
-            }
-        });
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        return check_staus[0];
-    }
-
-    public String GetFileTask() {
-        return textUser.getText().toString();
-    }
-
-    @SuppressLint("Range")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_PDF_FILES && resultCode == RESULT_OK) {
-            if (data != null) {
-                // Kiểm tra xem người dùng đã chọn một hoặc nhiều tệp
-                if (data.getData() != null) {
-                    // Trường hợp người dùng chỉ chọn một tệp
-                    Uri pdfUri = data.getData();
-                    // Xử lý tệp PDF ở đây
-                    String name_file = pdfUri.getPath().substring(pdfUri.getPath().lastIndexOf("/") + 1);
-                    //----- new 25/3/2024
-                    String uriString = pdfUri.toString();
-                    File myFile = new File(uriString);
-                    String path = myFile.getAbsolutePath();
-                    String displayName = null;
-                    if (uriString.startsWith("content://")) {
-                        Cursor cursor = null;
-                        try {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                cursor = this.getContentResolver().query(pdfUri, null, null, null);
-                                if (cursor != null && cursor.moveToFirst()) {
-                                    displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                                }
-                            }
-                        } finally {
-                            cursor.close();
-                        }
-                    } else if (uriString.startsWith("file://")) {
-                        displayName = myFile.getName();
-                    }
-                    textUser.setText(displayName);
-                    //-----------//
-//                    Toast.makeText(GroupLayout.this,pdfUri.getPath(),Toast.LENGTH_SHORT).show();
-//                    Log.d("file_uri", pdfUri.toString());
-//                    Log.d("file_path", pdfUri.getPath().substring(pdfUri.getPath().lastIndexOf("/") + 1));
-                }
+        if(100 == requestCode && RESULT_OK == resultCode){
+            try {
+                rowTasks.clear();
+                ConvertRowTask(data_task);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
+            onRestart();
         }
     }
-
-
 }

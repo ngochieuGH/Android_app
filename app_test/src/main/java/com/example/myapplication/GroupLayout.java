@@ -177,7 +177,8 @@ public class GroupLayout extends AppCompatActivity {
                 holder.file_title.setText(model.getName());
                 holder.file_title.setPaintFlags(holder.file_title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
                 holder.nameShare.setText(model.getNameShare());
-                holder.title.setText(model.getTitle());
+                holder.title.setText("# " + model.getTitle());
+                holder.date.setText("Ngày chia sẻ: " + model.getDate());
                 holder.file_title.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

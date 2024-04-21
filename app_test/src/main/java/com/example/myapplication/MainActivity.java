@@ -85,12 +85,17 @@ public class MainActivity extends AppCompatActivity {
                             new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-//                                    Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                    Intent scr = new Intent(MainActivity.this, homeLayout.class);
-                                    Log.d("State_Home","Off1");
-                                    scr.putExtra("data_user", response.toString());
-                                    Log.d("State_Home","Off2");
-                                    startActivity(scr);
+                                    Log.d("Res value is: ", response.toString());
+                                    if(response.toString().equals("{}")){
+                                        Toast.makeText(MainActivity.this, "Accout not find, please check again", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        Intent scr = new Intent(MainActivity.this, homeLayout.class);
+                                        Log.d("State_Home","Off1");
+                                        scr.putExtra("data_user", response.toString());
+                                        Log.d("State_Home","Off2");
+                                        startActivity(scr);
+                                    }
                                 }
                             }, new Response.ErrorListener() {
                         @Override

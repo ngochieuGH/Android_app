@@ -77,27 +77,32 @@ public class SignUp extends AppCompatActivity {
                 String s2 = username.getText().toString();
                 String s3 = password.getText().toString();
                 if(!s1.equals("") && !s2.equals("") && !s3.equals("")){
-                    if(s3.equals(rPassword.getText().toString())){
-                        User user = new User();
-                        user.setName(s1);
-                        user.setUsername(s2);
-                        user.setPassword(s3);
-                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, user.toJSON(),
-                                new Response.Listener<JSONObject>() {
-                                    @Override
-                                    public void onResponse(JSONObject response) {
-//                                        Toast.makeText(SignUp.this, response.toString(), Toast.LENGTH_SHORT).show();
-//                                        Intent scr = new Intent(SignUp.this, Home_Layout.class);
-//                                        startActivity(scr);
-                                        DialogSignUp(response);
-                                    }
-                                }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(SignUp.this, error.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        requestQueue.add(jsonObjectRequest);
+                    if(s3.equals(rPassword.getText().toString())) {
+                        if (s3.length() < 6) {
+                            Toast.makeText(SignUp.this, "Mật khẩu tối thiểu phải gồm 6 ký tự", Toast.LENGTH_SHORT).show();
+                        } else {
+                            User user = new User();
+                            user.setName(s1);
+                            user.setUsername(s2);
+                            user.setPassword(s3);
+                            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, user.toJSON(),
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            if (response.toString().equals("{}")) {
+                                                Toast.makeText(SignUp.this, "Accout is already", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                DialogSignUp(response);
+                                            }
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(SignUp.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            requestQueue.add(jsonObjectRequest);
+                        }
                     }
                     else {
                         Toast.makeText(SignUp.this, "Mật khẩu không khóp, vui lòng nhập lại ", Toast.LENGTH_SHORT).show();

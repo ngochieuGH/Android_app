@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_enable"
+    android:background="@drawable/item_fshare"
     android:layout_margin="20dp">
     <TextView
         android:paddingStart="20dp"
         android:padding="10dp"
-        android:background="@drawable/bg_top_dialog"
+        android:background="@drawable/bg_top_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/nameTask"
